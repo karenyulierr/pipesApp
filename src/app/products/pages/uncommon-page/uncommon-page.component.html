@@ -15,20 +15,47 @@
   </div>
   <div class="col-12 md:col-6">
     <p-fieldset legend="i18Plural pipe" [toggleable]="true">
-    <p>Actualmente {{ clients.length | i18nPlural: clientsMap }}</p>
-    <p-button (click)="deleteCliente()" label="Borrar cliente"></p-button>
+      <p>Actualmente {{ clients.length | i18nPlural : clientsMap }}</p>
+      <p-button (click)="deleteCliente()" label="Borrar cliente"></p-button>
     </p-fieldset>
   </div>
   <div class="col-12 md:col-6">
-    <p-fieldset legend="Slice pipe" [toggleable]="true"> </p-fieldset>
+    <p-fieldset legend="Slice pipe" [toggleable]="true">
+      <b>Original</b>
+      <pre>{{ clients }}</pre>
+      <b>slice:0:2</b>
+      <pre>{{ clients | slice:0:2 }}</pre>
+      <b>slice:1:2</b>
+      <pre>{{ clients | slice:1:2 }}</pre>
+      <b>slice:3:4</b>
+      <pre>{{ clients | slice:3:4 }}</pre>
+      <b>slice:0:-2</b>
+      <pre>{{ clients | slice:0:-2 }}</pre>
+    </p-fieldset>
   </div>
   <div class="col-12 md:col-6">
-    <p-fieldset legend="Json pipe" [toggleable]="true"> </p-fieldset>
+    <p-fieldset legend="Json pipe" [toggleable]="true">
+      <pre>
+        {{ person | json }}
+      </pre>
+    </p-fieldset>
   </div>
   <div class="col-12 md:col-6">
-    <p-fieldset legend="KeyValue pipe" [toggleable]="true"> </p-fieldset>
+    <p-fieldset legend="KeyValue pipe" [toggleable]="true">
+      <ul>
+        <li *ngFor="let item of person | keyvalue">
+          <b>{{ item.key | titlecase }}</b> : {{ item.value }}
+        </li>
+      </ul>
+    </p-fieldset>
   </div>
   <div class="col-12 md:col-6">
-    <p-fieldset legend="Async pipe" [toggleable]="true"> </p-fieldset>
+    <p-fieldset legend="Async pipe" [toggleable]="true">
+      <pre *ngIf="!(myObservableTimer | async)">Resolviendo observable</pre>
+      <pre>{{ myObservableTimer | async }}</pre>
+
+      <pre *ngIf="!(promiseValue | async)">Resolviendo observable</pre>
+      <pre>{{ promiseValue | async }}</pre>
+    </p-fieldset>
   </div>
 </div>
